@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  microservicio5:
+    build: .
+    container_name: microservicio5_orchestrator
+    ports:
+      - "8005:8005"
+    environment:
+      - MICROSERVICE1_URL=http://microservicio1:8081
+      - MICROSERVICE2_URL=http://microservicio2:3000
+      - MICROSERVICE3_URL=http://microservicio3:8000
+      - MICROSERVICE4_URL=http://microservicio4:8080
+      - REQUEST_TIMEOUT=30
+      - MAX_RETRIES=3
+    networks:
+      - scrapetok-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8005/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  scrapetok-network:
+    external: true

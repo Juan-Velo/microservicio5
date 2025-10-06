@@ -1,0 +1,220 @@
+{
+  "health_check": {
+    "description": "Endpoint de verificación de salud del servicio",
+    "method": "GET",
+    "url": "/",
+    "response_example": {
+      "status": "ok",
+      "service": "Microservicio 5 - Orquestador",
+      "version": "1.0.0",
+      "message": "Service is running"
+    }
+  },
+  "consolidated_dashboard": {
+    "description": "Dashboard consolidado con información de todos los microservicios",
+    "method": "GET",
+    "url": "/api/dashboard/consolidated?user_id={user_id}",
+    "response_example": {
+      "users": [
+        {
+          "id": 1,
+          "email": "user@example.com",
+          "role": "USER",
+          "created_at": "2025-01-15T10:30:00"
+        },
+        {
+          "id": 2,
+          "email": "admin@example.com",
+          "role": "ADMIN",
+          "created_at": "2025-01-10T08:00:00"
+        }
+      ],
+      "scraped_accounts": [
+        {
+          "id": 1,
+          "account_name": "@tiktoker123",
+          "user_id": 1,
+          "created_at": "2025-01-20T15:45:00"
+        },
+        {
+          "id": 2,
+          "account_name": "@influencer456",
+          "user_id": 1,
+          "created_at": "2025-01-22T10:30:00"
+        }
+      ],
+      "metrics": {
+        "items": [
+          {
+            "postId": "7123456789",
+            "postURL": "https://tiktok.com/@tiktoker123/video/7123456789",
+            "usernameTiktokAccount": "@tiktoker123",
+            "views": 150000,
+            "likes": 12000,
+            "comments": 850,
+            "shares": 450,
+            "totalInteractions": 13300,
+            "engagement": 8.87,
+            "datePosted": "2025-01-22",
+            "hourPosted": 18,
+            "hashtags": "#viral #trending #fyp",
+            "regionPost": "PE"
+          },
+          {
+            "postId": "7123456790",
+            "postURL": "https://tiktok.com/@influencer456/video/7123456790",
+            "usernameTiktokAccount": "@influencer456",
+            "views": 250000,
+            "likes": 35000,
+            "comments": 1200,
+            "shares": 800,
+            "totalInteractions": 37000,
+            "engagement": 14.8,
+            "datePosted": "2025-01-23",
+            "hourPosted": 20,
+            "hashtags": "#funny #comedy #viral",
+            "regionPost": "US"
+          }
+        ],
+        "count": 150,
+        "dashboard": [
+          {
+            "metric": "totals",
+            "totalPosts": 150,
+            "totalViews": 5000000,
+            "totalLikes": 450000,
+            "totalComments": 35000,
+            "totalInteractions": 550000,
+            "avgEngagement": 8.2
+          }
+        ]
+      },
+      "dashboard_data": [
+        {
+          "username": "@tiktoker123",
+          "totalViews": 1500000,
+          "totalLikes": 120000
+        },
+        {
+          "username": "@influencer456",
+          "totalViews": 3500000,
+          "totalLikes": 330000
+        }
+      ],
+      "metadata": {
+        "total_users": 10,
+        "total_accounts": 25,
+        "total_posts_analyzed": 150,
+        "timestamp": "2025-10-05T12:00:00.123456",
+        "services_status": {
+          "microservice1": "ok",
+          "microservice2": "ok",
+          "microservice3": "ok",
+          "microservice4": "ok"
+        }
+      }
+    }
+  },
+  "summary_dashboard": {
+    "description": "Resumen y rankings de métricas principales",
+    "method": "GET",
+    "url": "/api/dashboard/summary?user_id={user_id}",
+    "response_example": {
+      "summary": {
+        "total_users": 10,
+        "total_accounts": 25,
+        "average_engagement": 8.5,
+        "total_views": 5000000,
+        "total_likes": 450000,
+        "total_interactions": 550000
+      },
+      "rankings": {
+        "top_users": [
+          {
+            "user_id": 1,
+            "accounts_count": 5,
+            "email": "user@example.com"
+          },
+          {
+            "user_id": 3,
+            "accounts_count": 4,
+            "email": "user3@example.com"
+          },
+          {
+            "user_id": 5,
+            "accounts_count": 3,
+            "email": "user5@example.com"
+          }
+        ],
+        "top_accounts": [
+          {
+            "account": "@influencer456",
+            "total_views": 3500000,
+            "total_likes": 330000,
+            "total_engagement": 95.8,
+            "post_count": 75
+          },
+          {
+            "account": "@tiktoker123",
+            "total_views": 1500000,
+            "total_likes": 120000,
+            "total_engagement": 45.2,
+            "post_count": 50
+          },
+          {
+            "account": "@creator789",
+            "total_views": 800000,
+            "total_likes": 65000,
+            "total_engagement": 35.5,
+            "post_count": 40
+          }
+        ],
+        "best_engagement": [
+          {
+            "post_id": "7123456795",
+            "account": "@viral_content",
+            "engagement": 18.5,
+            "views": 500000,
+            "likes": 92500
+          },
+          {
+            "post_id": "7123456790",
+            "account": "@influencer456",
+            "engagement": 14.8,
+            "views": 250000,
+            "likes": 35000
+          },
+          {
+            "post_id": "7123456792",
+            "account": "@trending_now",
+            "engagement": 12.3,
+            "views": 180000,
+            "likes": 22000
+          }
+        ]
+      },
+      "trends": {
+        "growth_rate": 15.2,
+        "engagement_trend": "increasing"
+      },
+      "timestamp": "2025-10-05T12:00:00.123456"
+    }
+  },
+  "services_health": {
+    "description": "Estado de salud de todos los microservicios conectados",
+    "method": "GET",
+    "url": "/api/health/services",
+    "response_example_healthy": {
+      "microservice1": "healthy",
+      "microservice2": "healthy",
+      "microservice3": "healthy",
+      "microservice4": "healthy"
+    },
+    "response_example_with_failures": {
+      "microservice1": "healthy",
+      "microservice2": "unhealthy: Connection timeout",
+      "microservice3": "healthy",
+      "microservice4": "unhealthy: Service unavailable"
+    }
+  }
+}
